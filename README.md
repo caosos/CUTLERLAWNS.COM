@@ -1,8 +1,22 @@
-# Cutler Lawns website
+# Cutler Lawns self-hosted full-stack app
 
-High-end commercial-first website for **Cutler Lawns** / **Cutler Property Preservation & Landscape Services** at `cutlerlawns.com`.
+Cutler Lawns / **Cutler Property Preservation & Landscape Services** is now structured as a self-hosted Next.js application for `cutlerlawns.com`.
 
-The site positions Cutler as a professional Central Arkansas exterior property maintenance company serving commercial properties first, with a residential lawn and landscape division also available.
+## Purpose
+
+Commercial-first landscaping, property preservation, winter response, residential division, product/project cart, estimate calculators, gallery/story/pamphlet content, review-source trust content, and an AI Yard Builder.
+
+## Self-hosted deployment
+
+This app is designed for a normal Node server you control. It does not depend on GitHub Pages or Vercel.
+
+```bash
+npm install
+npm run build
+PORT=3000 npm run start
+```
+
+`next.config.mjs` uses `output: 'standalone'` for server deployment packaging.
 
 ## Local development
 
@@ -11,47 +25,62 @@ npm install
 npm run dev
 ```
 
-## Production build
+Open `http://localhost:3000`.
 
-```bash
-npm run build
-npm run preview
-```
+## Environment variables
 
-## Images and logo
+Copy `.env.example` to `.env.local`. Keep all secrets server-side.
 
-Drop client-owned or explicitly licensed images into `public/images/` with these filenames:
+- `AI_PROVIDER=mock` by default for placeholder concepts.
+- Add future provider keys such as `OPENAI_API_KEY` only on the server.
+- Review credentials can be connected later for Birdeye/Google Business Profile.
 
-- `cutler-logo.png` or `cutler-logo.svg`
-- `commercial-lawn-care.jpg`
-- `parking-lot-cleaning.jpg`
-- `pressure-washing.jpg`
-- `landscape-maintenance.jpg`
-- `snow-ice-response.jpg`
-- `residential-lawn-care.jpg`
-- `before-after-cleanup.jpg`
+## Uploads
 
-The homepage already references `/images/commercial-lawn-care.jpg` for the hero visual. If the image is missing, the CSS gradient and placeholder text still keep the page presentable.
+The upload API stores local files in `/public/uploads/` through `app/api/uploads/route.ts` and `lib/storage.ts`. The storage helper is intentionally small so it can later be replaced with S3-compatible storage.
 
-See `public/assets/source-assets.md` for the public source/asset research manifest and permission notes.
+## Data/content structure
 
-## Review integrations
+Editable MVP data lives in `lib/data.ts`:
+- products and plant items
+- categories through product `category`
+- gallery items
+- pamphlets
+- review sources
 
-The `ReviewSources` section is designed to avoid fake testimonials. Without live credentials, it shows source-linked review cards only and labels them as review sources.
+## AI design flow
 
-To enable live reviews later, connect one of these options:
+The UI at `/design` supports:
+1. property image upload
+2. area selection
+3. products/plants selection
+4. style and budget selection
+5. server-side prompt building
+6. mock concept gallery
+7. save/request estimate/add-to-cart buttons
 
-1. **Birdeye widget/embed**: add an approved Birdeye embed snippet through the site code or a server-rendered config value.
-2. **Google Business Profile API**: implement a server-side loader using environment variables only. Do not expose private credentials in client JavaScript.
+`lib/ai.ts` builds prompts that preserve the uploaded property scene and improve only the selected landscape zone. Real image generation can be connected in `generateDesignConcept()` with server-side API keys.
 
-Expected environment placeholders are listed in `.env.example`.
+## Implemented vs scaffolded
 
-## Contact form note
+Implemented:
+- Next.js self-hosted app
+- commercial-first homepage
+- AI studio UI and API routes
+- local upload handling
+- product/plant catalog
+- project cart quote form UI
+- estimate calculators
+- gallery/story/video/pamphlet placeholders
+- review-source pages
+- asset documentation
 
-The contact form is front-end only. Before production, connect it to Formspree, Netlify Forms, Resend, or a custom API route so submissions are delivered.
+Scaffolded for production connection:
+- real AI provider image generation
+- email/CRM submission for quote forms
+- live review feeds
+- authenticated admin editing
 
-## Assumptions
+## Assets
 
-- No client-owned image files or logo were present in the repository, so the design uses CSS-based visual placeholders.
-- Public Cutler pages and public review/profile pages were used only as source-linked references; no images were scraped or hotlinked.
-- Optional city chips are service-area examples for Central Arkansas, not a guarantee of coverage for every property.
+See `public/images/README.md` for image, video thumbnail, upload, and pamphlet filenames/locations.

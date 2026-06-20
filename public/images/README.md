@@ -1,14 +1,21 @@
-# Cutler Lawns image drop folder
+# Cutler Lawns asset locations
 
-Place client-owned or explicitly licensed images here using these filenames so the website can display them without code changes:
+Use client-owned or properly licensed assets only.
 
-- `cutler-logo.png` or `cutler-logo.svg`
-- `commercial-lawn-care.jpg`
-- `parking-lot-cleaning.jpg`
-- `pressure-washing.jpg`
-- `landscape-maintenance.jpg`
-- `snow-ice-response.jpg`
-- `residential-lawn-care.jpg`
-- `before-after-cleanup.jpg`
+## Recommended folders
+- `/public/images/logo/` — logo files such as `cutler-logo.svg` or `cutler-logo.png`.
+- `/public/images/services/` — commercial mowing, landscape maintenance, pressure washing, winter response, preservation cleanup.
+- `/public/images/gallery/` — featured work, before/after, seasonal refresh, commercial properties, residential transformations, winter response, property preservation, pressure washing results.
+- `/public/images/products/` — plant, mulch, sod, paver, edging, lighting, irrigation, drainage, grill, fire pit, planter images.
+- `/public/images/video-thumbnails/` — thumbnails for short story videos.
+- `/public/images/ai/` — optional mock concept placeholders.
+- `/public/uploads/` — local development uploads saved by the self-hosted upload API.
 
-The current site uses CSS gradients and graceful placeholders when these images are not present. Do not hotlink third-party images.
+## PDFs
+Pamphlet PDFs belong in `/public/pamphlets/`:
+- `commercial-services.pdf`
+- `residential-services.pdf`
+- `property-preservation.pdf`
+- `winter-services.pdf`
+- `outdoor-living.pdf`
+- `estimate-guide.pdf`
