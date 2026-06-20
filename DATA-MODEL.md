@@ -33,3 +33,35 @@ This is high-level planning. Exact schemas can change during implementation.
 ## Reporting data
 
 The reporting module should derive revenue, paid/unpaid invoices, service category revenue, recurring maintenance revenue, one-time project revenue, material cost, labor cost, gross profit estimate, job profitability, customer value, and outstanding balances from these entities.
+
+## Future platform-level entities
+
+These entities describe the larger reusable platform direction. They do not all need to be implemented immediately.
+
+- `Platform`: global platform configuration, supported verticals, feature flags, providers, and shared defaults.
+- `BusinessInstance`: a specific business using the platform, including brand name, legal/display names, colors, logos, location/market, settings, active template, and enabled modules.
+- `BusinessTemplate`: reusable industry template containing default services, forms, calculators, statuses, pages, CTAs, estimate fields, invoice fields, checklist templates, and portal recommendations.
+- `Vertical`: industry category such as landscaping, handyman, cleaning, pressure washing, painting, HVAC, pest control, pool maintenance, or mobile mechanic.
+- `User`: login identity for owners, admins, workers, customers, and other account types.
+- `Role`: permissions bundle controlling access to public, customer, worker, admin, and owner features.
+- `Customer`: person or company buying services from a business instance.
+- `Property`: service location, access notes, customer relationship, and site-specific history.
+- `Service`: sellable or requestable service defined by the business instance or inherited from a template.
+- `ServiceRequest`: lead/customer request for work, including service category, notes, photos, urgency, property, and status.
+- `Job`: scheduled or completed work item with assignment, status, checklist, proof photos, labor/materials, and completion data.
+- `JobPhoto`: before, after, issue, source, AI, or proof photo associated with a job or request.
+- `Estimate`: proposed scope and pricing, often created from a service request, calculator, project cart, or AI concept.
+- `Invoice`: bill issued for completed or scheduled work, tied to customer, property, job, estimate, line items, status, and payment link.
+- `Payment`: payment record from Stripe, Square, QuickBooks, manual entry, or another provider.
+- `Product`: reusable product/material/plant/equipment item used in catalogs, estimates, jobs, or carts.
+- `CatalogItem`: template or instance-specific item presented publicly or internally, such as plants, materials, service packages, or add-ons.
+- `Calculator`: modular pricing/planning tool for square footage, mulch, sod, rooms, walls, pressure-washing surfaces, labor, or other vertical needs.
+- `WorkflowTemplate`: reusable job/status flow for an industry, service, or business instance.
+- `ChecklistTemplate`: reusable task checklist for crews, workers, quality control, cleaning rooms, property maintenance, inspections, or proof workflows.
+- `AIConcept`: AI-generated or AI-assisted plan, image, copy draft, design concept, service bundle, or project recommendation.
+- `MediaAsset`: uploaded or generated file with ownership, visibility, approval, storage, and usage metadata.
+- `Report`: saved or generated reporting view for revenue, invoices, jobs, customers, service categories, recurring work, labor, materials, and performance.
+
+## Data-model guardrail
+
+The first implementation should still serve Cutler. Add platform/template/instance concepts only when they clarify implementation or prevent obvious rework. For example, service and catalog data can be shaped so landscaping works now while still allowing future handyman, cleaning, pressure-washing, painting, and maintenance templates.
