@@ -1,10 +1,75 @@
-# Cutler Lawns self-hosted full-stack app
+# Cutler Lawns Business Operations Platform
 
-Cutler Lawns / **Cutler Property Preservation & Landscape Services** is now structured as a self-hosted Next.js application for `cutlerlawns.com`.
+Cutler Lawns / **Cutler Property Preservation & Landscape Services** is being built as a self-hosted full-stack business operations platform for `cutlerlawns.com`.
 
-## Purpose
+The public landscaping website is only one part of the system. The long-term product is a private, database-backed operating tool that helps the owner win leads, convert them into estimates, schedule work, verify completion, invoice customers, accept payments through a real provider, and understand business performance.
 
-Commercial-first landscaping, property preservation, winter response, residential division, product/project cart, estimate calculators, gallery/story/pamphlet content, review-source trust content, and an AI Yard Builder.
+## Core mission
+
+Build a complete business tool for a landscaping and property-services company, not just a brochure site. The platform should help the owner:
+
+- get new leads from a premium commercial-first public website;
+- convert leads and AI/project-cart ideas into estimates;
+- manage customer accounts, properties, recurring maintenance, and service history;
+- assign jobs to workers or crews;
+- verify job completion with before/after photos, checklists, notes, material usage, labor time, and timestamps;
+- respond to customer complaints with documented proof;
+- issue invoices, track payment status, and eventually accept online payments;
+- track revenue, outstanding balances, job profitability, and basic P&L signals;
+- support AI-powered yard design concepts and project planning.
+
+## Public-facing side
+
+The public site should continue to include:
+
+- premium commercial-first homepage;
+- residential division pages;
+- property preservation and winter services;
+- gallery/stories and service pages;
+- review-source trust section;
+- contact and quote request forms;
+- AI Yard Builder marketing section;
+- calculators;
+- project cart / estimate builder.
+
+## Private platform side
+
+The private side should eventually include:
+
+- customer portal;
+- worker / crew portal;
+- admin / owner dashboard;
+- service request system;
+- job and work-order system;
+- before/after proof workflow;
+- estimates, invoices, payment-provider integration points, and recurring billing planning;
+- product / plant / project cart management;
+- AI yard design request management;
+- P&L / business reporting.
+
+See the dedicated planning docs:
+
+- [START-HERE.md](START-HERE.md)
+- [MISSION.md](MISSION.md)
+- [BUSINESS-PLATFORM.md](BUSINESS-PLATFORM.md)
+- [ROADMAP.md](ROADMAP.md)
+- [ARCHITECTURE.md](ARCHITECTURE.md)
+- [DATA-MODEL.md](DATA-MODEL.md)
+- [SECURITY-PRIVACY.md](SECURITY-PRIVACY.md)
+
+## Architecture direction
+
+Preferred direction:
+
+- Next.js app, not a static-only site;
+- server-side routes/actions for private operations;
+- database-backed business data;
+- local upload storage first, behind a storage abstraction that can later move to S3, Supabase Storage, or Cloudflare R2;
+- environment variables for secrets;
+- role-based access control for public visitors, customers, workers, crew leads, admins, and owners;
+- future Stripe, Square, QuickBooks, and AI image-provider integration points.
+
+Do **not** hardcode fake payment logic. Do **not** store raw credit-card data.
 
 ## Self-hosted deployment
 
@@ -33,54 +98,33 @@ Copy `.env.example` to `.env.local`. Keep all secrets server-side.
 
 - `AI_PROVIDER=mock` by default for placeholder concepts.
 - Add future provider keys such as `OPENAI_API_KEY` only on the server.
+- Add future payment keys only after a real provider is selected.
 - Review credentials can be connected later for Birdeye/Google Business Profile.
 
 ## Uploads
 
-The upload API stores local files in `/public/uploads/` through `app/api/uploads/route.ts` and `lib/storage.ts`. The storage helper is intentionally small so it can later be replaced with S3-compatible storage.
+The upload API currently stores local files in `/public/uploads/` through `app/api/uploads/route.ts` and `lib/storage.ts`. This is acceptable for early self-hosting, but private customer uploads, worker proof photos, and AI design uploads should move behind authenticated access and a storage abstraction before production use.
 
-## Data/content structure
+## Implemented vs planned
 
-Editable MVP data lives in `lib/data.ts`:
-- products and plant items
-- categories through product `category`
-- gallery items
-- pamphlets
-- review sources
+Implemented/scaffolded today:
 
-## AI design flow
+- Next.js self-hosted app;
+- commercial-first homepage;
+- AI studio UI and API routes;
+- local upload handling;
+- product/plant catalog;
+- project cart quote form UI;
+- estimate calculators;
+- gallery/story/video/pamphlet placeholders;
+- review-source pages;
+- asset documentation.
 
-The UI at `/design` supports:
-1. property image upload
-2. area selection
-3. products/plants selection
-4. style and budget selection
-5. server-side prompt building
-6. mock concept gallery
-7. save/request estimate/add-to-cart buttons
+Planned platform modules:
 
-`lib/ai.ts` builds prompts that preserve the uploaded property scene and improve only the selected landscape zone. Real image generation can be connected in `generateDesignConcept()` with server-side API keys.
-
-## Implemented vs scaffolded
-
-Implemented:
-- Next.js self-hosted app
-- commercial-first homepage
-- AI studio UI and API routes
-- local upload handling
-- product/plant catalog
-- project cart quote form UI
-- estimate calculators
-- gallery/story/video/pamphlet placeholders
-- review-source pages
-- asset documentation
-
-Scaffolded for production connection:
-- real AI provider image generation
-- email/CRM submission for quote forms
-- live review feeds
-- authenticated admin editing
-
-## Assets
-
-See `public/images/README.md` for image, video thumbnail, upload, and pamphlet filenames/locations.
+- authenticated customer portal;
+- worker / crew portal;
+- admin / owner dashboard;
+- database-backed service requests, jobs, estimates, invoices, payments, and reports;
+- real payment-provider integration;
+- real AI image generation and saved customer concepts.
