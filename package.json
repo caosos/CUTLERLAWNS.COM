@@ -3,7 +3,8 @@
     "dev": "next dev 0.0.0.0 -p 3000",
     "build": "next build",
     "start": "next start 0.0.0.0 -p ${PORT:-3000}",
-    "lint": "next lint"
+    "lint": "next lint",
+    "harvest:cutler": "node scripts/harvest-cutler-assets.mjs"
   },
   "dependencies": {
     "@types/node": "latest",
