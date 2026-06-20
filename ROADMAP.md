@@ -73,3 +73,10 @@ Candidate providers: Stripe, Square, QuickBooks integration, and manual invoice 
 - Job profitability estimates.
 - Recurring revenue.
 - Materials/labor tracking.
+
+
+## Platform expansion roadmap
+
+The Cutler roadmap above is the implementation path for the first business instance. See [PRODUCT-ROADMAP.md](PRODUCT-ROADMAP.md) for the larger path from Cutler public site to reusable business templates, multi-business instances, AI onboarding, and voice/chat-based business building.
+
+The key sequencing rule is: prove the operational model in Cutler first, then extract reusable platform pieces into configurable templates. Do not turn the repo vague or generic before Cutler works.
