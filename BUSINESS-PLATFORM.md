@@ -27,3 +27,9 @@ The project cart is not necessarily public ecommerce at first. It should support
 ## Owner visibility
 
 Every operational module should improve owner visibility into customers, properties, jobs, worker activity, completion proof, invoices, payments, and profitability.
+
+## AI Yard Planner Business Platform Connection
+
+Design sessions should become first-class business objects that connect to customer accounts, properties, project carts, estimate requests, admin dashboard review, uploaded photos, and saved AI concepts.
+
+The current staged workflow intentionally saves value before image generation: uploaded image context, intake selections, AI conversation answers, approved design brief, prompt draft, estimate notes, generated/mock concepts, and project cart items. This lets Cutler review better quote requests even when the customer chooses "Save without generating" or "Request estimate without generating."

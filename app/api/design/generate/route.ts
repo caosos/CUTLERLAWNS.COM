@@ -1,0 +1,2 @@
+import {NextResponse} from 'next/server';import {generateConceptImages} from '@/lib/ai/imageProvider';
+export async function POST(req:Request){const body=await req.json();if(!body.designBrief&&!body.brief)return NextResponse.json({error:'Design brief approval is required before generation.'},{status:400});return NextResponse.json(await generateConceptImages(body.designBrief||body.brief,body.count||1));}

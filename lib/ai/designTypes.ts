@@ -1,0 +1,5 @@
+export type DesignStage='upload'|'intake'|'conversation'|'brief'|'approved'|'generating'|'generated'|'estimate-requested';
+export type ConversationMessage={role:'assistant'|'user'|'system';content:string;timestamp?:string};
+export type DesignBrief={uploadedImageReference?:string;areaToImprove:string;projectType:string;budgetLevel:string;style:string;selectedProducts:string[];sunShadeAssumption:string;maintenanceLevel:string;recommendedLayoutApproach:string;recommendedMaterials:string[];preserve:string[];change:string[];imagePromptDraft:string;estimateNotes:string[]};
+export type GeneratedConcept={id:string;title:string;description:string;selectedProducts:string[];designDirection:string;estimatedMaterials:string[];imageUrl?:string;statusLabel:string};
+export type DesignSession={id:string;uploadedImage?:string;selectedProducts:string[];areaToImprove:string;projectType:string;style:string;budget:string;conversationMessages:ConversationMessage[];designBrief?:DesignBrief;generationStatus:'not-started'|'pending-approval'|'mock'|'generating'|'complete'|'failed';generatedConcepts:GeneratedConcept[];projectCartItems:string[]};
