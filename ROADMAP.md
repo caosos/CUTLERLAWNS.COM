@@ -80,3 +80,10 @@ Candidate providers: Stripe, Square, QuickBooks integration, and manual invoice 
 The Cutler roadmap above is the implementation path for the first business instance. See [PRODUCT-ROADMAP.md](PRODUCT-ROADMAP.md) for the larger path from Cutler public site to reusable business templates, multi-business instances, AI onboarding, and voice/chat-based business building.
 
 The key sequencing rule is: prove the operational model in Cutler first, then extract reusable platform pieces into configurable templates. Do not turn the repo vague or generic before Cutler works.
+
+## AI Design Consultation Roadmap Update
+
+- Replace immediate image generation with staged intake, chat, brief approval, and generation gate.
+- Connect `/api/design/chat`, `/api/design/brief`, and `/api/design/generate` to the selected provider behind server-only keys.
+- Persist `DesignSession` records to customer accounts, properties, uploaded photos, saved concepts, project carts, estimate requests, and admin dashboard queues.
+- Add real cost controls: one initial concept, confirmation for multi-image variations, and reuse of approved design briefs.

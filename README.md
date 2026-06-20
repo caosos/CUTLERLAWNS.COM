@@ -128,3 +128,7 @@ Planned platform modules:
 - database-backed service requests, jobs, estimates, invoices, payments, and reports;
 - real payment-provider integration;
 - real AI image generation and saved customer concepts.
+
+## AI Yard Planner mock mode
+
+The design page uses a staged AI Design Consultation flow. Set `AI_PROVIDER=mock` to keep chat, brief, and concept generation in scaffold mode. Mock generation returns polished text concept cards with an "Image generation backend pending" label instead of broken image placeholders.
